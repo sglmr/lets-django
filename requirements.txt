@@ -1,0 +1,15 @@
+Django
+environs[django]
+django-allauth[socialaccount]
+django-htmx
+django-q2
+django-tailwind-cli
+python-slugify
+whitenoise
+
+# Development requirements
+Faker
+pytest
+pytest-django
+django-browser-reload~=1.15.0
+django-debug-toolbar~=4.4.6
