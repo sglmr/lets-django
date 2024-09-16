@@ -34,6 +34,9 @@ DEBUG = env.bool("DEBUG", False)
 
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", [])
 
+INTERNAL_IPS = ["127.0.0.1"]
+
+SITE_ID = 1
 
 # Application definition
 
@@ -50,6 +53,8 @@ INSTALLED_APPS = [
     "allauth.account",
     "debug_toolbar",
     "django_browser_reload",
+    "tailwind",
+    "theme",
     "whitenoise.runserver_nostatic",
 ]
 
@@ -80,6 +85,18 @@ AUTHENTICATION_BACKENDS = [
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
 
+# django-allauth setup
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+if not DEBUG:
+    ACCOUNT_EMAIL_VERIFICATION = "none"
+    ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+    ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
+
 # allauth provider specific settings
 SOCIALACCOUNT_PROVIDERS = {}
 
@@ -102,6 +119,8 @@ TEMPLATES = [
         },
     },
 ]
+
+TAILWIND_APP_NAME = "theme"
 
 WSGI_APPLICATION = "web.wsgi.application"
 
